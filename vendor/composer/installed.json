@@ -1,0 +1,44 @@
+{
+    "packages": [
+        {
+            "name": "flotiq/wordpress-content-type-definitions",
+            "version": "0.1",
+            "version_normalized": "0.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/flotiq/wordpress-content-type-definitions.git",
+                "reference": "21e38cbce88b340bdbf1f23298bd8321f0c5210a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/flotiq/wordpress-content-type-definitions/zipball/21e38cbce88b340bdbf1f23298bd8321f0c5210a",
+                "reference": "21e38cbce88b340bdbf1f23298bd8321f0c5210a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "time": "2021-03-31T10:29:05+00:00",
+            "type": "library",
+            "installation-source": "source",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Flotiq",
+                    "email": "projects-flotiq@codewave.pl"
+                }
+            ],
+            "description": "Content type definitions used by Wordpress importer 2 Flotiq",
+            "support": {
+                "issues": "https://github.com/flotiq/wordpress-content-type-definitions/issues",
+                "source": "https://github.com/flotiq/wordpress-content-type-definitions/tree/0.1"
+            },
+            "install-path": "../flotiq/wordpress-content-type-definitions"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}
