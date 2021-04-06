@@ -24,7 +24,8 @@ if (is_admin()) {
     add_action('post_updated', 'create_or_update_object');
     add_action('add_attachment', 'create_or_update_media');
     add_action('delete_attachment', 'delete_media');
-
+    add_action('created_term', 'create_or_update_tag');
+    add_action('edited_term', 'create_or_update_tag');
 }
 
 function delete_media($post_id)
@@ -47,11 +48,7 @@ function remove_object($post_id)
 
 function create_or_update_object($post_id)
 {
-    $apiKey = get_option('flotiq_api_key');
-    if (!$apiKey) {
-        // show notice;
-        return;
-    }
+    $apiKey = get_api_key();
 
     $post = get_post($post_id);
 
@@ -63,16 +60,24 @@ function create_or_update_object($post_id)
 
 
     }
+}
 
+function create_or_update_tag($tag_id)
+{
+    $apiKey = $apiKey = get_api_key();
+    $tag = get_tag($tag_id);
+
+    $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
+    try {
+        $wordpress2FlotiqSync->syncTags([$tag], wp_upload_dir()['basedir']);
+    } catch (\OpenAPI\Client\ApiException $e) {
+        return;
+    }
 }
 
 function create_or_update_media($post_id)
 {
-    $apiKey = get_option('flotiq_api_key');
-    if (!$apiKey) {
-        // show notice;
-        return;
-    }
+    $apiKey = get_api_key();
 
     $post = get_post($post_id);
 
@@ -82,6 +87,23 @@ function create_or_update_media($post_id)
     } catch (\OpenAPI\Client\ApiException $e) {
         return;
     }
+}
+
+function get_api_key()
+{
+    $apiKey = get_option('flotiq_api_key');
+    if (!$apiKey) {
+        add_action('admin_notices', function () {
+            ?>
+            <div class="notice notice-error is-dismissible">
+                <p><strong><?php echo __('Wordpress 2 Flotiq Sync'); ?></strong></p>
+                <p><?php echo __('No api key, please provide api key!') ?></p>
+            </div>
+            <?php
+        });
+        return;
+    }
+    return $apiKey;
 }
 
 
