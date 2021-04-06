@@ -190,8 +190,27 @@ class Wordpress2FlotiqSync
             $this->client,
             $this->config
         );
-        $f_tag_id = TagConverter::createFlotqId($tag_id);
 
-        return $apiInstance->deleteWpTagWithHttpInfo($f_tag_id);
+        $f_tag_id = TagConverter::createFlotqId($tag_id);
+        try {
+            return $apiInstance->deleteWpTagWithHttpInfo($f_tag_id);
+        } catch (ApiException $e) {
+            return false;
+        }
+    }
+
+    public function removeCategory($category_id)
+    {
+        $apiInstance = new ContentWpCategoryApi(
+            $this->client,
+            $this->config
+        );
+
+        $f_category_id = CategoryConverter::createFlotqId($category_id);
+        try {
+            return $apiInstance->deleteWpCategoryWithHttpInfo($f_category_id);
+        } catch (ApiException $e) {
+            return false;
+        }
     }
 }

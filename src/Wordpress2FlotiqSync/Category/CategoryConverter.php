@@ -4,14 +4,21 @@ namespace Wordpress2FlotiqSync\Category;
 
 class CategoryConverter
 {
+    const CTD_NAME = 'wp_category';
+
     static public function convert($category)
     {
 
         return [
-            'id' => 'wp_category_' . $category->term_id,
+            'id' => self::createFlotqId($category->term_id),
             'slug' => $category->slug,
             'name' => $category->name,
             'description' => $category->description
         ];
+    }
+
+    static public function createFlotqId($wp_id)
+    {
+        return self::CTD_NAME . '_' . $wp_id;
     }
 }

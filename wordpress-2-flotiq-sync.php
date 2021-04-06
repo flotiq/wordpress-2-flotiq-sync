@@ -29,6 +29,7 @@ if (is_admin()) {
     add_action('delete_term', 'remove_tag');
     add_action('create_category', 'create_or_update_category');
     add_action('edit_category', 'create_or_update_category');
+    add_action('delete_category', 'remove_category');
 }
 
 function delete_media($post_id)
@@ -128,10 +129,21 @@ function remove_tag($tag_id)
         return;
     }
 
-
     $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
 
     $wordpress2FlotiqSync->removeTag($tag_id);
+}
+
+function remove_category($category_id)
+{
+    $apiKey = get_option('flotiq_api_key');
+    if (!$apiKey) {
+        return;
+    }
+
+    $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
+
+    $wordpress2FlotiqSync->removeCategory($category_id);
 }
 
 
