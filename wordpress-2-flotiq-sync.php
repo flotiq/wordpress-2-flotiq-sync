@@ -18,7 +18,7 @@ $wp_content_dir = ABSPATH . 'wp-content';
 $wp_plugin_dir = $wp_content_dir . '/plugins';
 
 if (is_admin()) {
-    add_action('wp_trash_post', 'remove_object');
+    add_action('wp_trash_post', 'remove_post');
     // @todo from trash to public
     add_action('save_post', 'create_or_update_object');
     add_action('post_updated', 'create_or_update_object');
@@ -38,19 +38,24 @@ function delete_media($post_id)
     $w2fSync->removeMedia($mediaPost->guid);
 }
 
-function remove_object($post_id)
+function remove_post($post_id)
 {
-    $result = delete_entries($post_id);
-
-    if ($result != 200) {
-        $_SESSION['wordpress-2-flotiq-sync-search-message']
-            = 'Proszę sprawdzić czy konfiguracja CA Search Sync jest poprawna.';
+    $apiKey = get_option('flotiq_api_key');
+    if (!$apiKey) {
+        return;
     }
+
+    $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
+
+    $wordpress2FlotiqSync->removePost($post_id);
 }
 
 function create_or_update_object($post_id)
 {
-    $apiKey = get_api_key();
+    $apiKey = get_option('flotiq_api_key');
+    if (!$apiKey) {
+        return;
+    }
 
     $post = get_post($post_id);
 

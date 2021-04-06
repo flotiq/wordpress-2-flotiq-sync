@@ -172,4 +172,16 @@ class Wordpress2FlotiqSync
         }
     }
 
+    public function removePost($post_id)
+    {
+        $apiInstance = new ContentWpPostApi(
+            $this->client,
+            $this->config
+        );
+
+        $f_post_id = 'wp_post_' . $post_id;
+
+        return $apiInstance->deleteWpPostWithHttpInfo($f_post_id);
+    }
+
 }
