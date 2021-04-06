@@ -26,6 +26,8 @@ if (is_admin()) {
     add_action('delete_attachment', 'delete_media');
     add_action('created_term', 'create_or_update_tag');
     add_action('edited_term', 'create_or_update_tag');
+    add_action('create_category', 'create_or_update_category');
+    add_action('edit_category', 'create_or_update_category');
 }
 
 function delete_media($post_id)
@@ -66,7 +68,9 @@ function create_or_update_tag($tag_id)
 {
     $apiKey = $apiKey = get_api_key();
     $tag = get_tag($tag_id);
-
+    if (!$tag) {
+        return;
+    }
     $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
     try {
         $wordpress2FlotiqSync->syncTags([$tag], wp_upload_dir()['basedir']);
@@ -84,6 +88,19 @@ function create_or_update_media($post_id)
     $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
     try {
         $wordpress2FlotiqSync->syncMedia([$post], wp_upload_dir()['basedir']);
+    } catch (\OpenAPI\Client\ApiException $e) {
+        return;
+    }
+}
+
+function create_or_update_category($category_id)
+{
+    $apiKey = get_api_key();
+    $category = get_category($category_id);
+
+    $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
+    try {
+        $wordpress2FlotiqSync->syncCategories([$category]);
     } catch (\OpenAPI\Client\ApiException $e) {
         return;
     }
