@@ -66,7 +66,10 @@ function create_or_update_object($post_id)
 
 function create_or_update_tag($tag_id)
 {
-    $apiKey = $apiKey = get_api_key();
+    $apiKey = get_option('flotiq_api_key');
+    if (!$apiKey) {
+        return;
+    }
     $tag = get_tag($tag_id);
     if (!$tag) {
         return;
@@ -81,7 +84,10 @@ function create_or_update_tag($tag_id)
 
 function create_or_update_media($post_id)
 {
-    $apiKey = get_api_key();
+    $apiKey = get_option('flotiq_api_key');
+    if (!$apiKey) {
+        return;
+    }
 
     $post = get_post($post_id);
 
@@ -95,7 +101,10 @@ function create_or_update_media($post_id)
 
 function create_or_update_category($category_id)
 {
-    $apiKey = get_api_key();
+    $apiKey = get_option('flotiq_api_key');
+    if (!$apiKey) {
+        return;
+    }
     $category = get_category($category_id);
 
     $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
@@ -104,23 +113,6 @@ function create_or_update_category($category_id)
     } catch (\OpenAPI\Client\ApiException $e) {
         return;
     }
-}
-
-function get_api_key()
-{
-    $apiKey = get_option('flotiq_api_key');
-    if (!$apiKey) {
-        add_action('admin_notices', function () {
-            ?>
-            <div class="notice notice-error is-dismissible">
-                <p><strong><?php echo __('Wordpress 2 Flotiq Sync'); ?></strong></p>
-                <p><?php echo __('No api key, please provide api key!') ?></p>
-            </div>
-            <?php
-        });
-        return;
-    }
-    return $apiKey;
 }
 
 
