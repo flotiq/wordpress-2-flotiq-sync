@@ -179,9 +179,19 @@ class Wordpress2FlotiqSync
             $this->config
         );
 
-        $f_post_id = 'wp_post_' . $post_id;
+        $f_post_id = PostConverter::createFlotqId($post_id);
 
         return $apiInstance->deleteWpPostWithHttpInfo($f_post_id);
     }
 
+    public function removeTag($tag_id)
+    {
+        $apiInstance = new ContentWpTagApi(
+            $this->client,
+            $this->config
+        );
+        $f_tag_id = TagConverter::createFlotqId($tag_id);
+
+        return $apiInstance->deleteWpTagWithHttpInfo($f_tag_id);
+    }
 }

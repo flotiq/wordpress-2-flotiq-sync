@@ -7,6 +7,8 @@ use Wordpress2FlotiqSync\Utils\ContentParser;
 
 class PostConverter
 {
+    const CTD_NAME = 'wp_post';
+
     private $contentParser;
 
     public function __construct($apiMediaInstance)
@@ -18,7 +20,7 @@ class PostConverter
     {
         return
             [
-                'id' => 'wp_post_' . $post->ID,
+                'id' => self::createFlotqId($post->ID),
                 'slug' => $post->post_title,
                 'title' => $post->post_title,
                 'status' => $post->post_status,
@@ -36,6 +38,11 @@ class PostConverter
                 'categories' => self::parseCategories($post->ID),
                 'featuredMedia' => $this->contentParser->featureMediaParse($post->ID)
             ];
+    }
+
+    static public function createFlotqId($wp_id)
+    {
+        return self::CTD_NAME . '_' . $wp_id;
     }
 
     static private function parseTags($postId)
