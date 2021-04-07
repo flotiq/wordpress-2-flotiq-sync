@@ -1,7 +1,6 @@
 <?php
 
-namespace Wordpress2FlotiqSync\Post;
-
+namespace Wordpress2FlotiqSync\Converters;
 
 use Wordpress2FlotiqSync\Utils\ContentParser;
 
@@ -31,9 +30,8 @@ class PostConverter
                 'excerpt' => $post->post_excerpt,
                 'author' => [[
                     'type' => 'internal',
-                    'dataUrl' => '/api/v1/content/wp_author/wp_author_' . $post->post_author
+                    'dataUrl' => '/api/v1/content/wp_author/' . AuthorConverter::createFlotqId($post->post_author)
                 ]],
-
                 'tags' => self::parseTags($post->ID),
                 'categories' => self::parseCategories($post->ID),
                 'featuredMedia' => $this->contentParser->featureMediaParse($post->ID)
@@ -56,7 +54,7 @@ class PostConverter
 
             $fTags[] = [
                 'type' => 'internal',
-                'dataUrl' => '/api/v1/content/wp_tag/wp_tag_' . $tag->term_id
+                'dataUrl' => '/api/v1/content/wp_tag/' . TagConverter::createFlotqId($tag->term_id)
             ];
         }
         return $fTags;
@@ -73,7 +71,7 @@ class PostConverter
 
             $fCategories[] = [
                 'type' => 'internal',
-                'dataUrl' => '/api/v1/content/wp_category/wp_category_' . $category->term_id
+                'dataUrl' => '/api/v1/content/wp_category/' . CategoryConverter::createFlotqId($category->term_id)
             ];
         }
         return $fCategories;

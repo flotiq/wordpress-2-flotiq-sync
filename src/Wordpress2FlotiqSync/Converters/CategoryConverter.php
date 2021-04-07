@@ -1,6 +1,6 @@
 <?php
 
-namespace Wordpress2FlotiqSync\Category;
+namespace Wordpress2FlotiqSync\Converters;
 
 class CategoryConverter
 {

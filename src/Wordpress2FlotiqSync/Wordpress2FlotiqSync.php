@@ -13,11 +13,11 @@ use OpenAPI\Client\Api\ContentWpCategoryApi;
 use OpenAPI\Client\Api\ContentWpTagApi;
 use OpenAPI\Client\Api\ContentWpPageApi;
 use OpenAPI\Client\Api\ContentWpPostApi;
-use Wordpress2FlotiqSync\Page\PageConverter;
-use Wordpress2FlotiqSync\Post\PostConverter;
-use Wordpress2FlotiqSync\Tag\TagConverter;
-use Wordpress2FlotiqSync\Author\AuthorConverter;
-use Wordpress2FlotiqSync\Category\CategoryConverter;
+use Wordpress2FlotiqSync\Converters\PageConverter;
+use Wordpress2FlotiqSync\Converters\PostConverter;
+use Wordpress2FlotiqSync\Converters\TagConverter;
+use Wordpress2FlotiqSync\Converters\AuthorConverter;
+use Wordpress2FlotiqSync\Converters\CategoryConverter;
 use Wordpress2FlotiqSync\Utils\FindMedia;
 use Wordpress2FlotiqSync\Utils\MediaFileName;
 

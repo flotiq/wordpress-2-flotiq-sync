@@ -25,7 +25,7 @@ class ContentParser
 
             $media = $this->findMedia->find($fileName);
 
-            if ($media) {
+            if ($media['count'] > 0) {
                 return $matches[1] . 'http://api.flotiq.com' . $media['data'][0]['url'];
             }
         }, $content);

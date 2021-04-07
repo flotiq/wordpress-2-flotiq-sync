@@ -1,6 +1,6 @@
 <?php
 
-namespace Wordpress2FlotiqSync\Tag;
+namespace Wordpress2FlotiqSync\Converters;
 
 class TagConverter
 {

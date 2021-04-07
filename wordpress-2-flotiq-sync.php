@@ -12,7 +12,7 @@ require_once(__DIR__ . '/autoloader.php');
 
 session_start();
 
-require __DIR__ . '/admin/wordpress-2-flotiq-sync-admin.php';
+require __DIR__ . '/src/admin/wordpress-2-flotiq-sync-admin.php';
 
 $wp_content_dir = ABSPATH . 'wp-content';
 $wp_plugin_dir = $wp_content_dir . '/plugins';
@@ -25,7 +25,6 @@ if (is_admin()) {
     $wordpressIntegration = new WordpressIntegration($apiKey);
 
     add_action('wp_trash_post',  [$wordpressIntegration, 'remove_post']);
-    // @todo from trash to public
     add_action('save_post', [$wordpressIntegration, 'create_or_update_object']);
     add_action('post_updated', [$wordpressIntegration, 'create_or_update_object']);
     add_action('add_attachment', [$wordpressIntegration, 'create_or_update_media']);

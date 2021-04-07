@@ -1,7 +1,7 @@
 <?php
 
-require_once(__DIR__ . '/../php-sdk/vendor/autoload.php');
-require_once(__DIR__ . '/../autoloader.php');
+require_once(__DIR__ . '/../../php-sdk/vendor/autoload.php');
+require_once(__DIR__ . '/../../autoloader.php');
 
 $admin_update_search_url = 'wordpress_2_flotiq_sync_edit';
 
@@ -72,9 +72,6 @@ function wordpress_2_flotiq_sync_run()
             });
             return;
         }
-        add_action('admin_notices', function () use ($status) {
-            w2f_sync_notify($status->message, 'info');
-        });
 
         $w2fSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
         $users = get_users();
@@ -115,8 +112,11 @@ function wordpress_2_flotiq_sync_run()
         if (count($posts)) {
             $w2fSync->syncPosts($posts);
         }
+        add_action('admin_notices', function () use ($status) {
+            w2f_sync_notify($status->message, 'info');
+        });
 
-        header("Location: admin.php?page=$admin_update_search_url&start-sync=true");
+        return;
     }
 }
 
