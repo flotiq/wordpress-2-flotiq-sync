@@ -17,6 +17,8 @@ git clone https://github.com/flotiq/wordpress-2-flotiq-sync.git
 
 Or [download](https://github.com/flotiq/wordpress-2-flotiq-sync/archive/refs/heads/main.zip) zip archive and extract to plugins directory.
 
+If finished, enable the plugin in the plugin list in wordpress.
+Wordpress 2 Flotiq Sync will now appear in the setup menu.
 
 ## Supported content
 
