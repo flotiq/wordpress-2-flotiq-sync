@@ -116,6 +116,10 @@ function wordpress_2_flotiq_sync_run()
             w2f_sync_notify($status->message, 'info');
         });
 
+        add_action('admin_notices', function () use ($status) {
+            w2f_sync_notify('Synchronization done.', 'success');
+        });
+
         return;
     }
 }
