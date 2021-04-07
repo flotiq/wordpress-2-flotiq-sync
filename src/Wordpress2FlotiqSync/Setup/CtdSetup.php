@@ -38,6 +38,9 @@ class CtdSetup
             }
             return new SetupStatus(SetupStatus::STATUS_OK, 'Content types succeed installed');
         } catch (ApiException $e) {
+            if ($e->getCode() === 401) {
+                return new SetupStatus(SetupStatus::STATUS_FAILED, $e->getMessage());
+            }
             return new SetupStatus(SetupStatus::STATUS_WARNING, $e->getMessage());
         } catch (\Exception $e) {
             return new SetupStatus(SetupStatus::STATUS_FAILED, $e->getMessage());
