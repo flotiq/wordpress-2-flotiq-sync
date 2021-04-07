@@ -18,132 +18,86 @@ $wp_content_dir = ABSPATH . 'wp-content';
 $wp_plugin_dir = $wp_content_dir . '/plugins';
 
 if (is_admin()) {
-    add_action('wp_trash_post', 'remove_post');
+    $apiKey = get_option('flotiq_api_key');
+    if (!$apiKey) {
+        return;
+    }
+    $wordpressIntegration = new WordpressIntegration($apiKey);
+
+    add_action('wp_trash_post',  [$wordpressIntegration, 'remove_post']);
     // @todo from trash to public
-    add_action('save_post', 'create_or_update_object');
-    add_action('post_updated', 'create_or_update_object');
-    add_action('add_attachment', 'create_or_update_media');
-    add_action('delete_attachment', 'delete_media');
-    add_action('created_term', 'create_or_update_tag');
-    add_action('edited_term', 'create_or_update_tag');
-    add_action('delete_term', 'remove_tag');
-    add_action('create_category', 'create_or_update_category');
-    add_action('edit_category', 'create_or_update_category');
-    add_action('delete_category', 'remove_category');
+    add_action('save_post', [$wordpressIntegration, 'create_or_update_object']);
+    add_action('post_updated', [$wordpressIntegration, 'create_or_update_object']);
+    add_action('add_attachment', [$wordpressIntegration, 'create_or_update_media']);
+    add_action('delete_attachment', [$wordpressIntegration, 'delete_media']);
+    add_action('created_term', [$wordpressIntegration, 'create_or_update_tag']);
+    add_action('edited_term', [$wordpressIntegration, 'create_or_update_tag']);
+    add_action('delete_term', [$wordpressIntegration, 'remove_tag']);
+    add_action('create_category', [$wordpressIntegration, 'create_or_update_category']);
+    add_action('edit_category', [$wordpressIntegration, 'create_or_update_category']);
+    add_action('delete_category', [$wordpressIntegration, 'remove_category']);
 }
 
-function delete_media($post_id)
+class WordpressIntegration
 {
-    $apiKey = get_option('flotiq_api_key');
-    $w2fSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
-    $mediaPost = get_post($post_id, 'attachment');
-    $w2fSync->removeMedia($mediaPost->guid);
-}
+    private $w2fSync;
 
-function remove_post($post_id)
-{
-    $apiKey = get_option('flotiq_api_key');
-    if (!$apiKey) {
-        return;
+    public function __construct($apiKey)
+    {
+        $this->w2fSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
     }
 
-    $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
-
-    $wordpress2FlotiqSync->removePost($post_id);
-}
-
-function create_or_update_object($post_id)
-{
-    $apiKey = get_option('flotiq_api_key');
-    if (!$apiKey) {
-        return;
+    public function delete_media($post_id)
+    {
+        $apiKey = get_option('flotiq_api_key');
+        $w2fSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
+        $mediaPost = get_post($post_id, 'attachment');
+        $w2fSync->removeMedia($mediaPost->guid);
     }
 
-    $post = get_post($post_id);
-
-    $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
-
-    try {
-        $result = $wordpress2FlotiqSync->syncPosts([$post]);
-    } catch (\OpenAPI\Client\ApiException $e) {
-
-
-    }
-}
-
-function create_or_update_tag($tag_id)
-{
-    $apiKey = get_option('flotiq_api_key');
-    if (!$apiKey) {
-        return;
-    }
-    $tag = get_tag($tag_id);
-    if (!$tag) {
-        return;
-    }
-    $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
-    try {
-        $wordpress2FlotiqSync->syncTags([$tag], wp_upload_dir()['basedir']);
-    } catch (\OpenAPI\Client\ApiException $e) {
-        return;
-    }
-}
-
-function create_or_update_media($post_id)
-{
-    $apiKey = get_option('flotiq_api_key');
-    if (!$apiKey) {
-        return;
+    public function remove_post($post_id)
+    {
+        $this->w2fSync->removePost($post_id);
     }
 
-    $post = get_post($post_id);
+    public function create_or_update_object($post_id)
+    {
+        $post = get_post($post_id);
 
-    $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
-    try {
-        $wordpress2FlotiqSync->syncMedia([$post], wp_upload_dir()['basedir']);
-    } catch (\OpenAPI\Client\ApiException $e) {
-        return;
+        $this->w2fSync->syncPosts([$post]);
+    }
+
+    function create_or_update_tag($tag_id)
+    {
+        $tag = get_tag($tag_id);
+        if (!$tag) {
+            return;
+        }
+
+        $this->w2fSync->syncTags([$tag], wp_upload_dir()['basedir']);
+    }
+
+    public function create_or_update_media($post_id)
+    {
+        $post = get_post($post_id);
+
+        $this->w2fSync->syncMedia([$post], wp_upload_dir()['basedir']);
+    }
+
+    public function create_or_update_category($category_id)
+    {
+        $category = get_category($category_id);
+
+        $this->w2fSync->syncCategories([$category]);
+    }
+
+    public function remove_tag($tag_id)
+    {
+        $this->w2fSync->removeTag($tag_id);
+    }
+
+    public function remove_category($category_id)
+    {
+        $this->w2fSync->removeCategory($category_id);
     }
 }
-
-function create_or_update_category($category_id)
-{
-    $apiKey = get_option('flotiq_api_key');
-    if (!$apiKey) {
-        return;
-    }
-    $category = get_category($category_id);
-
-    $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
-    try {
-        $wordpress2FlotiqSync->syncCategories([$category]);
-    } catch (\OpenAPI\Client\ApiException $e) {
-        return;
-    }
-}
-
-function remove_tag($tag_id)
-{
-    $apiKey = get_option('flotiq_api_key');
-    if (!$apiKey) {
-        return;
-    }
-
-    $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
-
-    $wordpress2FlotiqSync->removeTag($tag_id);
-}
-
-function remove_category($category_id)
-{
-    $apiKey = get_option('flotiq_api_key');
-    if (!$apiKey) {
-        return;
-    }
-
-    $wordpress2FlotiqSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
-
-    $wordpress2FlotiqSync->removeCategory($category_id);
-}
-
-
