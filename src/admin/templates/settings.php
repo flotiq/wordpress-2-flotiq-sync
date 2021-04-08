@@ -1,12 +1,5 @@
 <div class="wrap flotiq-admin">
     <h1><?php echo __('Wordpress 2 Flotiq Sync settings') ?></h1>
-    <p>
-        <a href="https://flotiq.com/docs/API/" target="_blank">
-            <?php echo __('Get Flotiq API key') ?>
-        </a>
-    </p>
-
-
 
     <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
         <?php if (array_key_exists('saved', $_REQUEST) && $_REQUEST['saved']) { ?>
