@@ -56,7 +56,16 @@ class WordpressIntegration
 
     public function remove_post($post_id)
     {
-        $this->w2fSync->removePost($post_id);
+        $post = get_post($post_id);
+
+        if(!$post) {
+            return;
+        }
+        if ($post->post_type === 'page') {
+            $this->w2fSync->removePage($post_id);
+        } else {
+            $this->w2fSync->removePost($post_id);
+        }
     }
 
     public function create_or_update_object($post_id)

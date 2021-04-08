@@ -181,7 +181,27 @@ class Wordpress2FlotiqSync
 
         $f_post_id = PostConverter::createFlotqId($post_id);
 
-        return $apiInstance->deleteWpPostWithHttpInfo($f_post_id);
+        try {
+            return $apiInstance->deleteWpPostWithHttpInfo($f_post_id);
+        } catch (ApiException $e) {
+            return false;
+        }
+    }
+
+    public function removePage($page_id)
+    {
+        $apiInstance = new ContentWpPageApi(
+            $this->client,
+            $this->config
+        );
+
+        $f_page_id = PageConverter::createFlotqId($page_id);
+
+        try {
+            return $apiInstance->deleteWpPageWithHttpInfo($f_page_id);
+        } catch (ApiException $e) {
+            return false;
+        }
     }
 
     public function removeTag($tag_id)
