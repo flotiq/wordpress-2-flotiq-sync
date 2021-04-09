@@ -25,7 +25,11 @@ if (is_admin()) {
     $wordpressIntegration = new WordpressIntegration($apiKey);
 
     add_action('wp_trash_post',  [$wordpressIntegration, 'remove_post']);
-    add_action('save_post', [$wordpressIntegration, 'create_or_update_object']);
+
+    add_action('new_to_publish', [$wordpressIntegration, 'create_or_update_object']);
+    add_action('draft_to_publish', [$wordpressIntegration, 'create_or_update_object']);
+    add_action('pending_to_publish', [$wordpressIntegration, 'create_or_update_object']);
+
     add_action('post_updated', [$wordpressIntegration, 'create_or_update_object']);
     add_action('add_attachment', [$wordpressIntegration, 'create_or_update_media']);
     add_action('delete_attachment', [$wordpressIntegration, 'delete_media']);
