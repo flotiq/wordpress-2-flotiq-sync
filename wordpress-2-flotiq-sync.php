@@ -17,29 +17,29 @@ require __DIR__ . '/src/admin/wordpress-2-flotiq-sync-admin.php';
 $wp_content_dir = ABSPATH . 'wp-content';
 $wp_plugin_dir = $wp_content_dir . '/plugins';
 
-if (is_admin()) {
-    $apiKey = get_option('flotiq_api_key');
-    if (!$apiKey) {
-        return;
-    }
-    $wordpressIntegration = new WordpressIntegration($apiKey);
-
-    add_action('wp_trash_post',  [$wordpressIntegration, 'remove_post']);
-
-    add_action('new_to_publish', [$wordpressIntegration, 'create_or_update_object']);
-    add_action('draft_to_publish', [$wordpressIntegration, 'create_or_update_object']);
-    add_action('pending_to_publish', [$wordpressIntegration, 'create_or_update_object']);
-
-    add_action('post_updated', [$wordpressIntegration, 'create_or_update_object']);
-    add_action('add_attachment', [$wordpressIntegration, 'create_or_update_media']);
-    add_action('delete_attachment', [$wordpressIntegration, 'delete_media']);
-    add_action('created_term', [$wordpressIntegration, 'create_or_update_tag']);
-    add_action('edited_term', [$wordpressIntegration, 'create_or_update_tag']);
-    add_action('delete_term', [$wordpressIntegration, 'remove_tag']);
-    add_action('create_category', [$wordpressIntegration, 'create_or_update_category']);
-    add_action('edit_category', [$wordpressIntegration, 'create_or_update_category']);
-    add_action('delete_category', [$wordpressIntegration, 'remove_category']);
+$apiKey = get_option('flotiq_api_key');
+if (!$apiKey) {
+    return;
 }
+$wordpressIntegration = new WordpressIntegration($apiKey);
+
+add_action('wp_trash_post',  [$wordpressIntegration, 'remove_post']);
+
+add_action('new_to_publish', [$wordpressIntegration, 'create_or_update_object']);
+add_action('draft_to_publish', [$wordpressIntegration, 'create_or_update_object']);
+add_action('pending_to_publish', [$wordpressIntegration, 'create_or_update_object']);
+
+add_action('post_updated', [$wordpressIntegration, 'create_or_update_object']);
+add_action('add_attachment', [$wordpressIntegration, 'create_or_update_media']);
+add_action('delete_attachment', [$wordpressIntegration, 'delete_media']);
+
+add_action('created_term', [$wordpressIntegration, 'create_or_update_tag']);
+add_action('edited_term', [$wordpressIntegration, 'create_or_update_tag']);
+add_action('delete_term', [$wordpressIntegration, 'remove_tag']);
+
+add_action('create_category', [$wordpressIntegration, 'create_or_update_category']);
+add_action('edited_category', [$wordpressIntegration, 'create_or_update_category']);
+add_action('delete_category', [$wordpressIntegration, 'remove_category']);
 
 class WordpressIntegration
 {
@@ -76,7 +76,11 @@ class WordpressIntegration
     {
         $post = get_post($post_id);
 
-        $this->w2fSync->syncPosts([$post]);
+        if ($post->post_type === 'page') {
+            $this->w2fSync->syncPages([$post]);
+        } else {
+            $this->w2fSync->syncPosts([$post]);
+        }
     }
 
     function create_or_update_tag($tag_id)
