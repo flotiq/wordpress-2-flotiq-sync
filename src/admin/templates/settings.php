@@ -12,7 +12,7 @@
                 <div class="module">
                     <div class="control-box control-box--type-text">
                         <label for="flotiq_api_key">
-                                <?php echo __('Flotiq API key') ?>
+                                <?php echo __('Flotiq RW API key') ?>
                         </label>
                         <input type="text" id="flotiq_api_key" class="regular-text code" name="flotiq_api_key"
                                placeholder="<?php echo __('key') ?>"
