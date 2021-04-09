@@ -110,7 +110,11 @@ class Wordpress2FlotiqSync
                 $exist = $findMedia->find($fileName);
                 if (!array_key_exists(0, $exist['data'])) {
 
-                    $fileSpl = new \SplFileObject($imagePath, 'r');
+                    try {
+                        $fileSpl = new \SplFileObject($imagePath, 'r');
+                    } catch (\RuntimeException $e) {
+                        break;
+                    }
 
                     $apiInstance->postMedia($fileSpl, 'image', 1);
                 }

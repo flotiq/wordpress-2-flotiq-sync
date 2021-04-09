@@ -47,9 +47,6 @@ function wordpress_2_flotiq_sync_edit_save()
 
 function wordpress_2_flotiq_sync_run()
 {
-
-    global $admin_update_search_url;
-
     if (isF2WsPage() && array_key_exists('action', $_REQUEST) && $_REQUEST['action'] === 'start-sync') {
         $apiKey = get_option('flotiq_api_key');
         if (!$apiKey) {
