@@ -100,7 +100,7 @@ function wordpress_2_flotiq_sync_run()
             $w2fSync->syncMedia($query_images->posts, $basedir);
         }
 
-        $pages = get_pages();
+        $pages = get_pages(['post_status' => 'publish']);
         if (count($pages)) {
             $w2fSync->syncPages($pages);
         }

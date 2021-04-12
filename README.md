@@ -23,7 +23,7 @@ Wordpress 2 Flotiq Sync will now appear in the setup menu.
 ## Supported content
 
 For the time being we support the following types of content:
-- posts
+- posts (only published)
 - pages
 - media
 - tags
