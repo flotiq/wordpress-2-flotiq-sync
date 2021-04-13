@@ -41,6 +41,8 @@ add_action('create_category', [$wordpressIntegration, 'create_or_update_category
 add_action('edited_category', [$wordpressIntegration, 'create_or_update_category']);
 add_action('delete_category', [$wordpressIntegration, 'remove_category']);
 
+add_action('admin_enqueue_scripts', [$wordpressIntegration, 'register_admin_style']);
+
 class WordpressIntegration
 {
     private $w2fSync;
@@ -115,5 +117,10 @@ class WordpressIntegration
     public function remove_category($category_id)
     {
         $this->w2fSync->removeCategory($category_id);
+    }
+
+    public function register_admin_style() {
+        wp_register_style( 'namespace', plugins_url('assets/style.css',__FILE__ ));
+        wp_enqueue_style( 'namespace' );
     }
 }
