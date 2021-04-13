@@ -113,7 +113,7 @@ class Wordpress2FlotiqSync
                     try {
                         $fileSpl = new \SplFileObject($imagePath, 'r');
                     } catch (\RuntimeException $e) {
-                        break;
+                        continue;
                     }
 
                     $apiInstance->postMedia($fileSpl, 'image', 1);
