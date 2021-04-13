@@ -1,0 +1,25 @@
+.flotiq-admin .container-settings {
+    max-width: 700px;
+}
+.flotiq-admin h1 {
+    margin-bottom: 30px;
+}
+.flotiq-admin .module {
+    border: 1px solid #e5e5e5;
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+.flotiq-admin .module h2 {
+    margin-top: 0;
+}
+.flotiq-admin .control-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.flotiq-admin .control-box label {
+    display: block;
+}

@@ -45,6 +45,8 @@ add_action('edit_user_profile_update', [$wordpressIntegration, 'edit_user']);
 add_action('profile_update', [$wordpressIntegration, 'edit_user']);
 add_action('user_register', [$wordpressIntegration, 'edit_user']);
 
+add_action('admin_enqueue_scripts', [$wordpressIntegration, 'register_admin_style']);
+
 class WordpressIntegration
 {
     private $w2fSync;
@@ -86,7 +88,6 @@ class WordpressIntegration
 
     public function create_or_update_object($post_id)
     {
-
         $post = get_post($post_id);
 
         if ($post->post_type === 'page') {
@@ -128,5 +129,10 @@ class WordpressIntegration
     public function remove_category($category_id)
     {
         $this->w2fSync->removeCategory($category_id);
+    }
+
+    public function register_admin_style() {
+        wp_register_style( 'namespace', plugins_url('assets/style.css',__FILE__ ));
+        wp_enqueue_style( 'namespace' );
     }
 }
