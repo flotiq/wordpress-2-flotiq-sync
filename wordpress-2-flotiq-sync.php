@@ -4,7 +4,6 @@
  Description: Use this Wordpress plugin to easily connect your Wordpress instance to Flotiq and synchronize your data.
  Version: 1.0
  Author: <a href="https://flotiq.com">Flotiq</a>
- Plugin URI: https://github.com/flotiq/wordpress-2-flotiq-sync
  License: GPLv2 or later
  */
 
