@@ -2,7 +2,7 @@
     <img src="https://editor.flotiq.com/fonts/fq-logo.svg" alt="Flotiq logo" title="Flotiq" align="right" height="60" />
 </a>
 
-WP 2 Flotiq Sync
+WordPress 2 Flotiq Sync
 ========================
 
 You can use this Wordpress plugin to easily connect your Wordpress instance to Flotiq and synchronize your data.
@@ -12,13 +12,13 @@ You can use this Wordpress plugin to easily connect your Wordpress instance to F
 Use git clone in wordpress plugins directory `wp-content/plugins`
 
 ````
-git clone https://github.com/flotiq/wordpress-2-flotiq-sync.git
+git clone https://github.com/flotiq/wordpress-2-flotiq-sync.git flotiq-sync
 ````
 
 Or [download](https://github.com/flotiq/wordpress-2-flotiq-sync/archive/refs/heads/main.zip) zip archive and extract to plugins directory.
 
 If finished, enable the plugin in the plugin list in wordpress.
-WP 2 Flotiq Sync will now appear in the setup menu.
+WordPress 2 Flotiq Sync will now appear in the setup menu.
 
 ## Supported content
 

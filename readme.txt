@@ -1,4 +1,4 @@
-=== WP 2 Flotiq Sync ===
+=== Flotiq Sync ===
 Contributors: flotiq
 Tags: wordpress, flotiq, headless cms, synchronization, backup
 Requires at least: 5.0
@@ -14,7 +14,7 @@ You can use this plugin to easily connect your WordPress instance to Flotiq and 
 == Installation ==
 1. Upload the plugin to your blog.
 2. Activate it.
-3. Go to the Settings > WP 2 Flotiq Sync.
+3. Go to the Settings > Flotiq Sync.
 4. Provide your Flotiq Read and Write API key.
 5. Click the \"Run synchronization\" button.
 

@@ -16,8 +16,8 @@ function wordpress_2_flotiq_sync_add_menu()
     global $admin_update_search_url;
     if (function_exists('add_menu_page')) {
         add_options_page(
-            'WP 2 Flotiq Sync Settings',
-            'WP 2 Flotiq Sync',
+            'Flotiq Sync Settings',
+            'Flotiq Sync',
             'manage_options',
             'wordpress_2_flotiq_sync_edit',
             'wordpress_2_flotiq_sync_edit'

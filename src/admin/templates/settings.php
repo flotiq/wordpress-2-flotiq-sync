@@ -1,5 +1,5 @@
 <div class="wrap flotiq-admin">
-    <h1><?php echo __('WP 2 Flotiq Sync settings') ?></h1>
+    <h1><?php echo __('Flotiq Sync settings') ?></h1>
     <?php if (array_key_exists('saved', $_REQUEST) && $_REQUEST['saved']) { ?>
         <div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible">
             <p><strong><?php echo __('The settings are saved') ?>.</strong></p>
@@ -58,7 +58,7 @@
 
         <div class="module">
 
-            <h2><?php echo __('WP 2 Flotiq Sync Plugin') ?></h2>
+            <h2><?php echo __('Flotiq Sync Plugin') ?></h2>
 
             <p>
                 <strong>
