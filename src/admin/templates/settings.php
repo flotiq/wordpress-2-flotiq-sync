@@ -14,7 +14,7 @@
             <p>
                 <?php echo __('<strong>To enable synchronization to Flotiq provide Read And Write API key.</strong>
                 Data will be synchronized automatically after actions like create, update, publish, or delete.
-                Check where to find your Flotiq API Key in the <a href="https://flotiq.com/docs/API/" target="_blank">docs</a>.') ?>
+                Check how to get your Flotiq API Key in the <a href="https://flotiq.com/docs/API/" target="_blank">docs</a>.') ?>
             </p>
 
 
@@ -43,9 +43,9 @@
 
 
         <div class="module">
-            <h2><?php echo __('Run initial synchronization') ?></h2>
+            <h2><?php echo __('Run synchronization') ?></h2>
             <p>
-                <?php echo __('For initial synchronization you can use this option. It will copy all your existing posts
+                <?php echo __('You can use this tool for initial synchronization. It will copy all your existing posts
                 pages, media, tags, categories, and authors to your Flotiq account.') ?>
             </p>
             <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
@@ -58,11 +58,11 @@
 
         <div class="module">
 
-            <h2><?php echo __('Wordpress 2 Flotiq Sync Plugin') ?></h2>
+            <h2><?php echo __('WordPress 2 Flotiq Sync Plugin') ?></h2>
 
             <p>
                 <strong>
-                    <?php echo __('You can use this Wordpress plugin to easily connect your Wordpress instance to Flotiq and synchronize your data.
+                    <?php echo __('You can use this plugin to easily connect your WordPress instance to Flotiq and synchronize your data.
                     We support the following types of content: posts, pages, media, tags, categories, authors.'); ?>
                 </strong>
             </p>
@@ -80,7 +80,7 @@
             <img src="https://api.flotiq.com/image/0x0/_media-72f06767-e413-4944-97ed-1df388463c2e.svg"
                  width="200px">
             <p>
-                <?php echo __('Learn more about Flotiq on the <a  href="https://flotiq.com">Flotiq.com</a>
+                <?php echo __('Learn more about Flotiq on <a  href="https://flotiq.com">Flotiq.com</a>
                                 and in the <a href="https://flotiq.com/docs">Flotiq Docs</a>.'); ?>
             </p>
 
