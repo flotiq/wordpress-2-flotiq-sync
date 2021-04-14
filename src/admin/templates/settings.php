@@ -1,5 +1,5 @@
 <div class="wrap flotiq-admin">
-    <h1><?php echo __('WordPress 2 Flotiq Sync settings') ?></h1>
+    <h1><?php echo __('WP 2 Flotiq Sync settings') ?></h1>
     <?php if (array_key_exists('saved', $_REQUEST) && $_REQUEST['saved']) { ?>
         <div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible">
             <p><strong><?php echo __('The settings are saved') ?>.</strong></p>
@@ -58,7 +58,7 @@
 
         <div class="module">
 
-            <h2><?php echo __('WordPress 2 Flotiq Sync Plugin') ?></h2>
+            <h2><?php echo __('WP 2 Flotiq Sync Plugin') ?></h2>
 
             <p>
                 <strong>
@@ -67,12 +67,14 @@
                 </strong>
             </p>
 
-            <p>
+            <p style="margin-bottom: 0">
             <?php echo __('If you wish to talk with us about this project, feel free to hop on our <a href="https://discord.gg/FwXcHnX">Discord Chat</a>.'); ?>
             <?php echo __('If you found a bug, please report it in <a href="https://github.com/flotiq/wordpress-2-flotiq-sync/issues">issues</a>.'); ?>
             </p>
 
+            <!--
             <a href="https://github.com/flotiq/wordpress-2-flotiq-sync">Source code on GitHub</a>
+            -->
         </div>
 
         <div class="module">

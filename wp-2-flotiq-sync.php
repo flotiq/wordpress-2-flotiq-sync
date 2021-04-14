@@ -1,7 +1,7 @@
 <?php
 /*
- Plugin Name: WordPress 2 Flotiq Sync
- Description: Use this Wordpress plugin to easily connect your Wordpress instance to Flotiq and synchronize your data.
+ Plugin Name: WP 2 Flotiq Sync
+ Description: Use this WordPress plugin to easily connect your Wordpress instance to Flotiq and synchronize your data.
  Version: 1.0
  Author: <a href="https://flotiq.com">Flotiq</a>
  License: GPLv2 or later
