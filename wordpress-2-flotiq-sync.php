@@ -41,6 +41,10 @@ add_action('create_category', [$wordpressIntegration, 'create_or_update_category
 add_action('edited_category', [$wordpressIntegration, 'create_or_update_category']);
 add_action('delete_category', [$wordpressIntegration, 'remove_category']);
 
+add_action('edit_user_profile_update', [$wordpressIntegration, 'edit_user']);
+add_action('profile_update', [$wordpressIntegration, 'edit_user']);
+add_action('user_register', [$wordpressIntegration, 'edit_user']);
+
 add_action('admin_enqueue_scripts', [$wordpressIntegration, 'register_admin_style']);
 
 class WordpressIntegration
@@ -50,6 +54,14 @@ class WordpressIntegration
     public function __construct($apiKey)
     {
         $this->w2fSync = new Wordpress2FlotiqSync\Wordpress2FlotiqSync($apiKey);
+    }
+
+    public function edit_user($user_id)
+    {
+        $user = get_userdata($user_id);
+        if ($user) {
+            $this->w2fSync->syncAuthors([$user]);
+        }
     }
 
     public function delete_media($post_id)
@@ -92,7 +104,7 @@ class WordpressIntegration
             return;
         }
 
-        $this->w2fSync->syncTags([$tag], wp_upload_dir()['basedir']);
+        $this->w2fSync->syncTags([$tag]);
     }
 
     public function create_or_update_media($post_id)

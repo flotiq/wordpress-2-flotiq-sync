@@ -36,12 +36,19 @@ class ContentParser
     public function featureMediaParse($postId)
     {
         $featuredMediaUrl = get_the_post_thumbnail_url($postId, 'attachment');
+        if (!$featuredMediaUrl) {
+            return [];
+        }
         $featuredMediaName = MediaFileName::getName($featuredMediaUrl);
         $media = $this->findMedia->find($featuredMediaName);
 
-        return [[
-            'type' => 'internal',
-            'dataUrl' => '/api/v1/content/_media/' . $media['data'][0]['id']
-        ]];
+        if ($media['data']) {
+            return [[
+                'type' => 'internal',
+                'dataUrl' => '/api/v1/content/_media/' . $media['data'][0]['id']
+            ]];
+        }
+
+        return [];
     }
 }
