@@ -1,10 +1,11 @@
 <?php
 /*
- Plugin Name: Wordpress2FlotiqSync
- Description: Flotiq synchronization for wordpress
+ Plugin Name: WordPress 2 Flotiq Sync
+ Description: Use this Wordpress plugin to easily connect your Wordpress instance to Flotiq and synchronize your data.
  Version: 1.0
- Author: <a href="https://codewave.eu">CodeWave</a>
- License: private
+ Author: <a href="https://flotiq.com">Flotiq</a>
+ Plugin URI: https://github.com/flotiq/wordpress-2-flotiq-sync
+ License: GPLv2 or later
  */
 
 require_once(__DIR__ . '/php-sdk/vendor/autoload.php');
@@ -132,7 +133,7 @@ class WordpressIntegration
     }
 
     public function register_admin_style() {
-        wp_register_style( 'namespace', plugins_url('assets/style.css',__FILE__ ));
+        wp_register_style( 'namespace', plugins_url('admin/css/style.css',__FILE__ ));
         wp_enqueue_style( 'namespace' );
     }
 }
