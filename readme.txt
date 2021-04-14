@@ -6,7 +6,7 @@ Tested up to: 5.7
 Requires PHP: 5.4
 License: GPLv2 or later
 
-Use this Wordpress plugin to easily connect your Wordpress instance to Flotiq and synchronize your data.
+Use this WordPress plugin to easily connect your WordPress instance to Flotiq and synchronize your data.
 
 == Description ==
 You can use this plugin to easily connect your WordPress instance to Flotiq and synchronize your data. We support the following types of content: posts, pages, media, tags, categories, authors.
