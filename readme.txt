@@ -29,3 +29,15 @@ We support the following types of content: posts, pages, media, tags, categories
 1. Plugin settings
 2. Content Types in Flotiq
 3. Imported posts in Flotiq
+
+== Changelog ==
+
+= 1.0 =
+* 2021-04-14
+* Initial release
+
+== Upgrade notice ==
+
+= 1.0 =
+* 2021-04-14
+* Initial release
