@@ -68,8 +68,14 @@
             </p>
 
             <p style="margin-bottom: 0">
-            <?php echo __('If you wish to talk with us about this project, feel free to hop on our <a href="https://discord.gg/FwXcHnX">Discord Chat</a>.'); ?>
-            <?php echo __('If you found a bug, please report it in <a href="https://github.com/flotiq/wordpress-2-flotiq-sync/issues">issues</a>.'); ?>
+            <?php echo __('If you wish to talk with us about this project, feel free to hop on our') ?>
+                <a href="https://discord.gg/FwXcHnX">
+                    <?php echo __('Discord Chat') ?>
+                </a>
+            <?php echo __('If you found a bug, please report it in') ?>
+                <a href="https://github.com/flotiq/wordpress-2-flotiq-sync/issues">
+                    <?php echo __('issues') ?>
+                </a>
             </p>
 
             <!--
@@ -79,7 +85,7 @@
 
         <div class="module">
 
-            <img src="https://api.flotiq.com/image/0x0/_media-72f06767-e413-4944-97ed-1df388463c2e.svg"
+            <img src="<?php echo plugin_dir_url(  __DIR__ ) . '../../assets/logo.svg' ?>"
                  width="200px">
             <p>
                 <?php echo __('Learn more about Flotiq on <a  href="https://flotiq.com">Flotiq.com</a>
