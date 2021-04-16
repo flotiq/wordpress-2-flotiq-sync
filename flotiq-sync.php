@@ -15,6 +15,12 @@ require __DIR__ . '/src/admin/wordpress-2-flotiq-sync-admin.php';
 $wp_content_dir = ABSPATH . 'wp-content';
 $wp_plugin_dir = $wp_content_dir . '/plugins';
 
+add_action('admin_enqueue_scripts', 'register_admin_style');
+function register_admin_style() {
+    wp_register_style( 'flotiq_sync', plugins_url('admin/css/style.css',__FILE__ ));
+    wp_enqueue_style( 'flotiq_sync' );
+}
+
 $apiKey = get_option('flotiq_api_key');
 if (!$apiKey) {
     return;
@@ -43,7 +49,6 @@ add_action('edit_user_profile_update', [$wordpressIntegration, 'edit_user']);
 add_action('profile_update', [$wordpressIntegration, 'edit_user']);
 add_action('user_register', [$wordpressIntegration, 'edit_user']);
 
-add_action('admin_enqueue_scripts', [$wordpressIntegration, 'register_admin_style']);
 
 class WordpressIntegration
 {
@@ -127,10 +132,5 @@ class WordpressIntegration
     public function remove_category($category_id)
     {
         $this->w2fSync->removeCategory($category_id);
-    }
-
-    public function register_admin_style() {
-        wp_register_style( 'namespace', plugins_url('admin/css/style.css',__FILE__ ));
-        wp_enqueue_style( 'namespace' );
     }
 }

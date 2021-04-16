@@ -86,11 +86,15 @@
                                 and in the <a href="https://flotiq.com/docs">Flotiq Docs</a>.'); ?>
             </p>
 
-            <p style="margin-bottom: 0">
+            <p>
                 <?php echo __('Remember you can easily use your WordPress data in the
                                 <a href="https://flotiq.com/docs/Deep-Dives/Building-a-blog-in-3-minutes/">
                                 Gatsby + Floiq integration</a> or setup one of the 
                                 <a href="https://github.com/flotiq?q=gatsby-starter">Flotiq Gatsby Starters</a>.');?>
+            </p>
+
+            <p style="margin-bottom: 0">
+                <a href="https://flotiq.com/flotiq-terms-of-service/"><?php echo __('Flotiq Terms and Conditions') ?></a>
             </p>
 
         </div>
