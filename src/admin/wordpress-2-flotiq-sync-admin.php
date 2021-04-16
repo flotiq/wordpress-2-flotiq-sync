@@ -54,6 +54,10 @@ function wordpress_2_flotiq_sync_edit_save()
 }
 
 function isValidApiKey($apiKey) {
+    if($apiKey === "") {
+        return true;
+    }
+
     if (strlen($apiKey) != 32) {
         return false;
     }
