@@ -37,12 +37,31 @@ function wordpress_2_flotiq_sync_edit()
 // Handle admin form
 function wordpress_2_flotiq_sync_edit_save()
 {
-    global $admin_update_search_url;
-
     if (isF2WsPage() && array_key_exists('action', $_REQUEST) && $_REQUEST['action'] === 'save') {
-        update_option('flotiq_api_key', $_REQUEST['flotiq_api_key']);
-        header("Location: admin.php?page=$admin_update_search_url&saved=true");
+        $apiKey = $_REQUEST['flotiq_api_key'];
+        $apiKey = sanitize_key($apiKey);
+        if (isValidApiKey($apiKey)) {
+            update_option('flotiq_api_key', $apiKey);
+            add_action('admin_notices', function () {
+                w2f_sync_notify('Api Key saved!', 'success');
+            });
+        } else {
+            add_action('admin_notices', function () {
+                w2f_sync_notify('Api Key is invalid!', 'error');
+            });
+        }
     }
+}
+
+function isValidApiKey($apiKey) {
+    if (strlen($apiKey) != 32) {
+        return false;
+    }
+
+    if (!ctype_alnum($apiKey)) {
+        return false;
+    }
+    return true;
 }
 
 function wordpress_2_flotiq_sync_run()
@@ -131,7 +150,7 @@ function w2f_sync_notify($message = '', $type = 'error')
 {
     ?>
     <div class="notice notice-<?php echo $type ?> is-dismissible">
-        <p><strong><?php echo __('Wordpress 2 Flotiq Sync'); ?></strong></p>
+        <p><strong><?php echo __('Flotiq Sync'); ?></strong></p>
         <p><?php echo __($message) ?></p>
     </div>
     <?php

@@ -10,8 +10,6 @@
 require_once(__DIR__ . '/php-sdk/vendor/autoload.php');
 require_once(__DIR__ . '/autoloader.php');
 
-session_start();
-
 require __DIR__ . '/src/admin/wordpress-2-flotiq-sync-admin.php';
 
 $wp_content_dir = ABSPATH . 'wp-content';
