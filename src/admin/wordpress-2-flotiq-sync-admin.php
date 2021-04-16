@@ -42,7 +42,9 @@ function wordpress_2_flotiq_sync_edit_save()
         $apiKey = sanitize_key($apiKey);
         if (isValidApiKey($apiKey)) {
             update_option('flotiq_api_key', $apiKey);
-            w2f_sync_notify('Api Key saved!', 'success');
+            add_action('admin_notices', function () {
+                w2f_sync_notify('Api Key saved!', 'success');
+            });
         } else {
             add_action('admin_notices', function () {
                 w2f_sync_notify('Api Key is invalid!', 'error');
