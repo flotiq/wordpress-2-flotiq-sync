@@ -5,6 +5,7 @@ Requires at least: 5.0
 Tested up to: 5.7
 Requires PHP: 5.4
 License: GPLv2 or later
+Stable Tag: 1.0
 
 Use this WordPress plugin to easily connect your WordPress instance to Flotiq and synchronize your data.
 
