@@ -37,18 +37,17 @@ function wordpress_2_flotiq_sync_edit()
 // Handle admin form
 function wordpress_2_flotiq_sync_edit_save()
 {
-    global $admin_update_search_url;
-
     if (isF2WsPage() && array_key_exists('action', $_REQUEST) && $_REQUEST['action'] === 'save') {
         $apiKey = $_REQUEST['flotiq_api_key'];
         $apiKey = sanitize_key($apiKey);
         if (isValidApiKey($apiKey)) {
             update_option('flotiq_api_key', $apiKey);
-            header("Location: admin.php?page=$admin_update_search_url&saved=true");
+            w2f_sync_notify('Api Key saved!', 'success');
+        } else {
+            add_action('admin_notices', function () {
+                w2f_sync_notify('Api Key is invalid!', 'error');
+            });
         }
-        add_action('admin_notices', function () {
-            w2f_sync_notify('Api Key is invalid!', 'error');
-        });
     }
 }
 
