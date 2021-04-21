@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '16cdcf195e238c933785d4445069e673e2bc35fe',
+    'reference' => 'c007eee3a06add4e1b03be9725e736375af771e3',
     'name' => 'flotiq/php-sdk',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '16cdcf195e238c933785d4445069e673e2bc35fe',
+      'reference' => 'c007eee3a06add4e1b03be9725e736375af771e3',
     ),
     'flotiq/wordpress-content-type-definitions' => 
     array (
@@ -31,12 +31,12 @@
     ),
     'guzzlehttp/guzzle' => 
     array (
-      'pretty_version' => '6.5.5',
-      'version' => '6.5.5.0',
+      'pretty_version' => '6.5.2',
+      'version' => '6.5.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9d4290de1cfd701f38099ef7e183b64b4b7b0c5e',
+      'reference' => '43ece0e75098b7ecd8d13918293029e555a50f82',
     ),
     'guzzlehttp/promises' => 
     array (
@@ -80,33 +80,6 @@
       array (
       ),
       'reference' => '120b605dfeb996808c31b6477290a714d356e822',
-    ),
-    'symfony/polyfill-intl-idn' => 
-    array (
-      'pretty_version' => 'v1.22.1',
-      'version' => '1.22.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '2d63434d922daf7da8dd863e7907e67ee3031483',
-    ),
-    'symfony/polyfill-intl-normalizer' => 
-    array (
-      'pretty_version' => 'v1.22.1',
-      'version' => '1.22.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '43a0283138253ed1d48d352ab6d0bdb3f809f248',
-    ),
-    'symfony/polyfill-php72' => 
-    array (
-      'pretty_version' => 'v1.22.1',
-      'version' => '1.22.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'cc6e6f9b39fe8075b3dabfbaf5b5f645ae1340c9',
     ),
   ),
 );

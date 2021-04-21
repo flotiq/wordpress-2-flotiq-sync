@@ -19,11 +19,11 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=5.4",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "^6.2",
+        "guzzlehttp/guzzle": "6.5.2",
         "flotiq/wordpress-content-type-definitions": "^0.1.0"
     },
 
