@@ -128,7 +128,7 @@ function wordpress_2_flotiq_sync_run()
             $w2fSync->syncPages($pages);
         }
 
-        $posts = get_posts(['post_status' => 'publish']);
+        $posts = get_posts();
         if (count($posts)) {
             $w2fSync->syncPosts($posts);
         }

@@ -5,7 +5,7 @@ Requires at least: 5.0
 Tested up to: 5.7
 Requires PHP: 7.0
 License: GPLv2 or later
-Stable Tag: 1.0.3
+Stable Tag: 1.0.4
 
 Use this WordPress plugin to easily connect your WordPress instance to Flotiq and synchronize your data.
 
@@ -37,6 +37,11 @@ We support the following types of content: posts, pages, media, tags, categories
 
 == Changelog ==
 
+= 1.0.4 =
+* 2021-05-05
+* Add draft posts to synchronization
+* Fix typos
+
 = 1.0.3 =
 * 2021-04-21
 * Changed required PHP version to 7.0
@@ -54,6 +59,11 @@ We support the following types of content: posts, pages, media, tags, categories
 * Initial release
 
 == Upgrade notice ==
+
+= 1.0.4 =
+* 2021-05-05
+* Add draft posts to synchronization
+* Fix typos
 
 = 1.0.3 =
 * 2021-04-21

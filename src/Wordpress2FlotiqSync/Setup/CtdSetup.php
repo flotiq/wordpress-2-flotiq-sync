@@ -36,7 +36,7 @@ class CtdSetup
             foreach ($ctds as $ctd) {
                 $this->client->postContentDefinition($ctd);
             }
-            return new SetupStatus(SetupStatus::STATUS_OK, 'Content types succeed installed');
+            return new SetupStatus(SetupStatus::STATUS_OK, 'Content type definitions installed successfully');
         } catch (ApiException $e) {
             if ($e->getCode() === 401) {
                 return new SetupStatus(SetupStatus::STATUS_FAILED, $e->getMessage());
@@ -54,7 +54,7 @@ class CtdSetup
     {
         $files = scandir(self::CTD_PATH);
         if (!$files) {
-            throw new \Exception("Required ctd's not founds!");
+            throw new \Exception("Required Content Type Definitions not found!");
         }
         $files = array_diff($files, ['.', '..']);
 
