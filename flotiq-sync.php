@@ -1,8 +1,8 @@
 <?php
 /*
  Plugin Name: Flotiq Sync
- Description: Use this WordPress plugin to easily connect your Wordpress instance to Flotiq and synchronize your data.
- Version: 1.0.4
+ Description: Use this WordPress plugin to easily connect your WordPress instance to Flotiq and synchronize your data.
+ Version: 1.0.5
  Author: Flotiq
  Author URI: https://flotiq.com
  License: GPLv2 or later

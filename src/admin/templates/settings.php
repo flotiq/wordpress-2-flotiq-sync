@@ -94,7 +94,7 @@
             </p>
 
             <p style="margin-bottom: 0">
-                <a href="https://flotiq.com/flotiq-terms-of-service/"><?php echo __('Flotiq Terms and Conditions') ?></a>
+                <a href="https://flotiq.com/terms-of-service/"><?php echo __('Flotiq Terms and Conditions') ?></a>
             </p>
 
         </div>
