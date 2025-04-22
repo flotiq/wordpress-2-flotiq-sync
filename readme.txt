@@ -2,10 +2,10 @@
 Contributors: flotiq
 Tags: wordpress, flotiq, headless cms, synchronization, backup
 Requires at least: 5.0
-Tested up to: 5.7
-Requires PHP: 7.0
+Tested up to: 6.8
+Requires PHP: 7.4
 License: GPLv2 or later
-Stable Tag: 1.0.5
+Stable Tag: 1.1.0
 
 Use this WordPress plugin to easily connect your WordPress instance to Flotiq and synchronize your data.
 

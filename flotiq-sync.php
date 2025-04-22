@@ -8,7 +8,7 @@
  License: GPLv2 or later
  */
 
-require_once(__DIR__ . '/php-sdk/vendor/autoload.php');
+require_once(__DIR__ . '/flotiq-php-sdk/vendor/autoload.php');
 require_once(__DIR__ . '/autoloader.php');
 
 require __DIR__ . '/src/admin/wordpress-2-flotiq-sync-admin.php';

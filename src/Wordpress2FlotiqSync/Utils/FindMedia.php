@@ -4,6 +4,8 @@
 namespace Wordpress2FlotiqSync\Utils;
 
 
+use OpenAPI\Client\Api\ContentMediaInternalApi;
+
 class FindMedia
 {
     private $apiMediaInstance;
@@ -26,6 +28,6 @@ class FindMedia
         $filter = '{"fileName":{"type":"contains","filter":"' . $fileName . '"}}';
 
         return $this->apiMediaInstance
-            ->listMedia(1, 1, 'internal.createdAt', 'asc', 0, $filter);
+            ->mediaList(1, 1, 'internal.createdAt', 'asc', 0, $filter);
     }
 }

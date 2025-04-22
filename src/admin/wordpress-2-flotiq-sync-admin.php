@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../../php-sdk/vendor/autoload.php');
+require_once(__DIR__ . '/../../flotiq-php-sdk/vendor/autoload.php');
 require_once(__DIR__ . '/../../autoloader.php');
 
 $admin_update_search_url = 'wordpress_2_flotiq_sync_edit';

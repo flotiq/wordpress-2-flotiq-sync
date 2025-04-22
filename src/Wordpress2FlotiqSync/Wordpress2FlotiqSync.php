@@ -4,7 +4,7 @@
 namespace Wordpress2FlotiqSync;
 
 use GuzzleHttp\Client;
-use OpenAPI\Client\Api\ContentMediaApi;
+use OpenAPI\Client\Api\ContentMediaInternalApi;
 use OpenAPI\Client\Api\MediaApi;
 use OpenAPI\Client\Configuration;
 use OpenAPI\Client\ApiException;
@@ -34,7 +34,7 @@ class Wordpress2FlotiqSync
         $this->config = Configuration::getDefaultConfiguration()
             ->setApiKey('X-AUTH-TOKEN', $apiKey);
 
-        $this->apiMediaInstance = new ContentMediaApi(
+        $this->apiMediaInstance = new ContentMediaInternalApi(
             $this->client,
             $this->config
         );
@@ -51,7 +51,7 @@ class Wordpress2FlotiqSync
             $authors[] = AuthorConverter::convert($user);
         }
         try {
-            return $apiInstance->batchCreateWpAuthor($this->update, $authors);
+            return $apiInstance->wpAuthorBatchCreate($this->update, $authors);
         } catch (ApiException $e) {
             return false;
         }
@@ -69,7 +69,8 @@ class Wordpress2FlotiqSync
             $this->config
         );
         try {
-            return $apiInstance->batchCreateWpCategory($this->update, $fCategories);
+            return $apiInstance->wpCategoryBatchCreate($this->update, $fCategories);
+
         } catch (ApiException $e) {
             return false;
         }
@@ -87,7 +88,7 @@ class Wordpress2FlotiqSync
         );
 
         try {
-            return $apiInstance->batchCreateWpTag($this->update, $fTags);
+            return $apiInstance->wpTagBatchCreate($this->update, $fTags);
         } catch (ApiException $e) {
             return false;
         }
@@ -132,7 +133,7 @@ class Wordpress2FlotiqSync
         $exist = $findMedia->find($fileName);
 
         if (array_key_exists(0, $exist['data'])) {
-            return $this->apiMediaInstance->deleteMediaWithHttpInfo($exist['data'][0]['id']);
+            return $this->apiMediaInstance->mediaDeleteWithHttpInfo($exist['data'][0]['id']);
         }
     }
 
@@ -150,7 +151,7 @@ class Wordpress2FlotiqSync
         );
 
         try {
-            return $apiInstance->batchCreateWpPage($this->update, $fPages);
+            return $apiInstance->wpPageBatchCreate($this->update, $fPages);
         } catch (ApiException $e) {
             return false;
         }
@@ -170,7 +171,7 @@ class Wordpress2FlotiqSync
         }
         try {
 
-            return $apiInstance->batchCreateWpPost($this->update, $fPosts);
+            return $apiInstance->wpPostBatchCreate($this->update, $fPosts);
         } catch (ApiException $e) {
             return false;
         }
@@ -186,7 +187,7 @@ class Wordpress2FlotiqSync
         $f_post_id = PostConverter::createFlotqId($post_id);
 
         try {
-            return $apiInstance->deleteWpPostWithHttpInfo($f_post_id);
+            return $apiInstance->wpPostDeleteWithHttpInfo($f_post_id);
         } catch (ApiException $e) {
             return false;
         }
@@ -202,7 +203,7 @@ class Wordpress2FlotiqSync
         $f_page_id = PageConverter::createFlotqId($page_id);
 
         try {
-            return $apiInstance->deleteWpPageWithHttpInfo($f_page_id);
+            return $apiInstance->wpPageBatchPatchWithHttpInfo($f_page_id);
         } catch (ApiException $e) {
             return false;
         }
@@ -217,7 +218,7 @@ class Wordpress2FlotiqSync
 
         $f_tag_id = TagConverter::createFlotqId($tag_id);
         try {
-            return $apiInstance->deleteWpTagWithHttpInfo($f_tag_id);
+            return $apiInstance->wpTagDeleteWithHttpInfo($f_tag_id);
         } catch (ApiException $e) {
             return false;
         }
@@ -232,7 +233,7 @@ class Wordpress2FlotiqSync
 
         $f_category_id = CategoryConverter::createFlotqId($category_id);
         try {
-            return $apiInstance->deleteWpCategoryWithHttpInfo($f_category_id);
+            return $apiInstance->wpCategoryDeleteWithHttpInfo($f_category_id);
         } catch (ApiException $e) {
             return false;
         }
