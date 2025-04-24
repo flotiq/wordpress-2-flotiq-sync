@@ -37,6 +37,10 @@ We support the following types of content: posts, pages, media, tags, categories
 
 == Changelog ==
 
+= 1.1.0 =
+* 2025-04-24
+* Updated Flotiq SDK
+
 = 1.0.5 =
 * 2021-12-28
 * Brand colours change
