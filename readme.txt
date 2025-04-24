@@ -1,6 +1,6 @@
 === Flotiq Sync ===
 Contributors: flotiq
-Tags: wordpress, flotiq, headless cms, synchronization, backup
+Tags: flotiq, headless cms, synchronization, backup
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
